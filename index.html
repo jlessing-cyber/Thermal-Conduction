@@ -3,55 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparative Thermal Conduction: H2 vs N2</title>
+    <title>Mixed Gas Thermal Conduction</title>
     <style>
         body { margin: 0; background: #0d1117; color: #c9d1d9; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
-        #controls { background: #161b22; padding: 15px; border-bottom: 1px solid #30363d; display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; z-index: 10; }
+        #controls { background: #161b22; padding: 15px; border-bottom: 1px solid #30363d; display: flex; align-items: center; justify-content: center; gap: 25px; flex-wrap: wrap; z-index: 10; }
         .control-group { display: flex; flex-direction: column; align-items: center; }
         label { font-size: 11px; margin-bottom: 5px; font-weight: bold; color: #8b949e; text-transform: uppercase; }
         
-        /* Legend Styles */
-        #legend { display: flex; gap: 20px; align-items: center; background: #0d1117; padding: 5px 15px; border-radius: 20px; border: 1px solid #30363d; }
-        .legend-item { display: flex; align-items: center; gap: 8px; font-family: monospace; font-size: 13px; }
+        #legend { display: flex; gap: 15px; background: #0d1117; padding: 8px 15px; border-radius: 8px; border: 1px solid #30363d; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
         .dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid white; }
 
         #sim-container { flex-grow: 1; position: relative; }
         canvas { background: #0d1117; display: block; cursor: crosshair; }
         
-        .wall-label { position: absolute; top: 10px; font-size: 12px; font-weight: bold; color: white; padding: 4px 10px; border-radius: 4px; z-index: 5; pointer-events: none; opacity: 0.8; }
-        #hot-label { left: 10px; background: #da3633; border: 1px solid #f85149; }
-        #cold-label { right: 10px; background: #1f6feb; border: 1px solid #388bfd; }
+        .wall-label { position: absolute; top: 10px; font-size: 11px; font-weight: bold; color: white; padding: 4px 10px; border-radius: 4px; opacity: 0.8; pointer-events: none; }
+        #hot-label { left: 10px; background: #da3633; }
+        #cold-label { right: 10px; background: #1f6feb; }
 
-        button { color: white; border: 1px solid rgba(240,246,252,0.1); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; }
+        button { color: white; border: 1px solid rgba(240,246,252,0.1); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
         #heatBtn { background: #da3633; }
         #resetBtn { background: #238636; }
-        button:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
 
     <div id="controls">
         <div class="control-group">
-            <label>1. Select Gas</label>
-            <select id="moleculeSelect" style="background: #1f242b; color: #c9d1d9; border: 1px solid #30363d; padding: 6px; border-radius: 4px; font-family: monospace;">
-                <option value="H2">Hydrogen (H₂)</option>
-                <option value="N2">Nitrogen (N₂)</option>
-            </select>
-        </div>
-
-        <div class="control-group">
-            <label>2. Identification</label>
+            <label>1. Select Chemicals</label>
             <div id="legend">
-                <div class="legend-item"><div class="dot" style="background: #58a6ff;"></div> H₂ (Light)</div>
-                <div class="legend-item"><div class="dot" style="background: #8b949e;"></div> N₂ (Heavy)</div>
+                <label class="legend-item"><input type="checkbox" id="checkH2" checked> <div class="dot" style="background: #58a6ff;"></div> H₂ (Light)</label>
+                <label class="legend-item"><input type="checkbox" id="checkN2"> <div class="dot" style="background: #8b949e;"></div> N₂ (Heavy)</label>
             </div>
         </div>
 
         <div class="control-group">
-            <label>3. Actions</label>
+            <label>2. Actions</label>
             <div style="display: flex; gap: 10px;">
                 <button id="heatBtn">Inject Heat (Left)</button>
-                <button id="resetBtn">Full Reset</button>
+                <button id="resetBtn">Inject Gas Sample</button>
             </div>
         </div>
     </div>
