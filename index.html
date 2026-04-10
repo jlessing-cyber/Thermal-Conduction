@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetic Thermal Conduction</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #controls {
+            background: #161b22;
+            padding: 15px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label { font-size: 12px; margin-bottom: 5px; font-weight: bold; }
+        input[type=range] { width: 120px; cursor: pointer; }
+        .value-display { font-family: monospace; color: #58a6ff; font-size: 14px; }
+        canvas {
+            flex-grow: 1;
+            background: #0d1117;
+            display: block;
+        }
+        .btn-reset {
+            background: #238636;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="controls">
+        <div class="control-group">
+            <label>Particle Density</label>
+            <input type="range" id="densitySlider" min="50" max="300" step="10" value="150">
+            <div class="value-display" id="d-val">150</div>
+        </div>
+
+        <div class="control-group">
+            <label>Heat Source Temp</label>
+            <input type="range" id="heatSlider" min="1" max="20" step="1" value="10">
+            <div class="value-display" id="h-val">High</div>
+        </div>
+
+        <button class="btn-reset" id="resetBtn">Inject Heat (Left)</button>
+    </div>
+
+    <canvas id="simCanvas"></canvas>
+
+    <script src="simulation.js"></script>
+</body>
+</html>
